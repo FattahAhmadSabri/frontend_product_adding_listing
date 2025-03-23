@@ -73,8 +73,8 @@ const ProductForm = ({ selectedProduct, onSubmitSuccess }) => {
     try {
       const method = selectedProduct ? "put" : "post";
       const url = selectedProduct
-        ? `${import.meta.env.VITE_API_URL}/api/products/api/products/${selectedProduct._id}`
-        : `${import.meta.env.VITE_API_URL}/api/products/api/products`;
+        ? `${import.meta.env.VITE_API_URL}api/products/${selectedProduct._id}`
+        : `${import.meta.env.VITE_API_URL}api/products`;
 
       await axios[method](url, data, {
         headers: { "Content-Type": "multipart/form-data" }
