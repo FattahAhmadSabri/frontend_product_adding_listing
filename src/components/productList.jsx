@@ -9,7 +9,7 @@ const ProductList = ({ refreshTrigger, setSelectedProduct }) => {
   const fetchProducts = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("http://localhost:5000/api/products"); // Full URL
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/products`); // Full URL
       setProducts(response.data.data || []);
     } catch (err) {
       console.error("Fetch products error:", err.response?.data || err.message);
@@ -24,7 +24,7 @@ const ProductList = ({ refreshTrigger, setSelectedProduct }) => {
     
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/products/${id}`,
+        `${process.env.REACT_APP_API_URL}/api/products/${id}`,
         {
           headers: {
             "Content-Type": "application/json",

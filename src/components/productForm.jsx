@@ -73,8 +73,8 @@ const ProductForm = ({ selectedProduct, onSubmitSuccess }) => {
     try {
       const method = selectedProduct ? "put" : "post";
       const url = selectedProduct
-        ? `http://localhost:5000/api/products/${selectedProduct._id}`
-        : "http://localhost:5000/api/products";
+        ? `${process.env.REACT_APP_API_URL}/api/products/api/products/${selectedProduct._id}`
+        : `${process.env.REACT_APP_API_URL}/api/products/api/products`;
 
       await axios[method](url, data, {
         headers: { "Content-Type": "multipart/form-data" }
