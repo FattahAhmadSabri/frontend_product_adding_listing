@@ -24,7 +24,7 @@ const ProductList = ({ refreshTrigger, setSelectedProduct }) => {
     
     try {
       const response = await axios.delete(
-        `${process.env.REACT_APP_API_URL}/api/products/${id}`,
+        `${import.meta.env.VITE_API_URL}/api/products/${id}`,
         {
           headers: {
             "Content-Type": "application/json",
