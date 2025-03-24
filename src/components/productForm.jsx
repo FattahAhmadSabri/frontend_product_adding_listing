@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
+import { useAuth } from "../context/AuthContext";
 
 const ProductForm = ({ selectedProduct, onSubmitSuccess }) => {
   const [formData, setFormData] = useState({ 
@@ -11,6 +12,7 @@ const ProductForm = ({ selectedProduct, onSubmitSuccess }) => {
   });
   const [errors, setErrors] = useState({});
   const fileInputRef = useRef(null);
+  const { token } = useAuth()
 
   useEffect(() => {
     if (selectedProduct) {
@@ -77,9 +79,12 @@ const ProductForm = ({ selectedProduct, onSubmitSuccess }) => {
 
         : `${import.meta.env.VITE_API_URL}/api/products`;
 
-      await axios[method](url, data, {
-        headers: { "Content-Type": "multipart/form-data" }
-      });
+        await axios[method](url, data, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+            Authorization: `Bearer ${token}` // 3. Add token to header
+          }
+        });
 
       // Clear form after submission
       setFormData({

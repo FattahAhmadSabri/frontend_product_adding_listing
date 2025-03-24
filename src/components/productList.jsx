@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useAuth } from '../context/AuthContext';
 
 const ProductList = ({ refreshTrigger, setSelectedProduct }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const { token } = useAuth();
 
   const fetchProducts = async () => {
     try {
@@ -28,6 +30,7 @@ const ProductList = ({ refreshTrigger, setSelectedProduct }) => {
         {
           headers: {
             "Content-Type": "application/json",
+             Authorization: `Bearer ${token}`
           },
           validateStatus: (status) => status === 200 || status === 404,
         }
